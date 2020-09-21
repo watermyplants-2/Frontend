@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Signup = (props) => {
-    const { change, submit } = props
+    const { change, submit, disabled, errors } = props
 
 //----------------------------//
 //   Event Handlers
@@ -43,8 +43,13 @@ const Signup = (props) => {
                     onChange={onChange}
                 />
                 </label>
-                <button>Sign Up</button>
+                <button disabled={disabled}>Sign Up</button>
             </form>
+            <div id="errorFrame">
+                {errors.username}
+                {errors.email}
+                {errors.password}
+            </div>
         </div>
     )
 };
