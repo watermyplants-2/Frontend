@@ -1,6 +1,8 @@
 import React from 'react';
 
-const Login = () => {
+const Login = (props) => {
+    const { change, submit } = props
+
     return(
         <div>
             <h1>Login:</h1>
