@@ -6,7 +6,8 @@ import Home from './Home';
 import PrivateRoute from "./PrivateRoute";
 import axios from 'axios'
 import * as yup from 'yup'
-import schema from './signupSchema'
+import loginSchema from './loginSchema'
+import signupSchema from './signupSchema'
 
 
 //----------------------------//
@@ -29,6 +30,7 @@ const initialFormErrors={
   email:"",
   password:"",
 }
+const initialSchema=loginSchema
 // Is there a secure way to store password so it's not in state?
 
 
@@ -40,6 +42,7 @@ function App() {
 const [formValues, setFormValues] = useState(initialFormValues) 
 const [disabled, setDisabled] = useState(initialDisabled)
 const [formErrors, setFormErrors] = useState(initialFormErrors)
+const [schema, setSchema] = useState(initialSchema)
 
 //----------------------------//
 //   Helpers
@@ -86,6 +89,7 @@ useEffect(() => {
 }, [formValues])
 
 
+
 //----------------------------//
 //   Event Handlers
 //----------------------------//
@@ -130,6 +134,7 @@ const submit = () => {
               submit={submit}
               disabled={disabled}
               errors={formErrors}
+              setSchema={setSchema}
             
             /> } />
           {/* <Route path='/signup' component={ Signup } /> */}
@@ -139,6 +144,7 @@ const submit = () => {
               submit={submit}
               disabled={disabled}
               errors={formErrors}
+              setSchema={setSchema}
 
           
               /> } />

@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import signupSchema from './signupSchema'
 
 const Signup = (props) => {
-    const { change, submit, disabled, errors } = props
+    const { change, submit, disabled, errors, setSchema } = props
+
+
+useEffect(()=>{
+    setSchema(signupSchema)
+},[])
 
 //----------------------------//
 //   Event Handlers

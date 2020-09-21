@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import loginSchema from './loginSchema'
+
 
 const Login = (props) => {
-    const { change, submit, disabled, errors } = props
+    const { change, submit, disabled, errors, setSchema } = props
+
+
 
     //----------------------------//
     //   Event Handlers
     //----------------------------//
+
+    useEffect(()=>{
+        setSchema(loginSchema)
+    },[])
 
     const onChange = evt => {
         const { name,value } = evt.target
