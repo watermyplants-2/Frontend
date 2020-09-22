@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Signup from './Signup';
 import Login from './Login';
 import Home from './Home';
-import PrivateRoute from "./PrivateRoute";
+// import PrivateRoute from "./PrivateRoute";
 import axios from 'axios'
 import * as yup from 'yup'
 import loginSchema from './loginSchema'
@@ -144,21 +144,10 @@ const loginSubmit = () => {
   return (
     <Router>
       <div>
-        <ul>
-          <li>
-            <Link to="/protected">Home</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/signup">Signup</Link>
-          </li>
-        </ul>
         <Switch>
-          {/* <PrivateRoute exact path="/protected" component={ Home } /> */}
-          <PrivateRoute exact path="/protected"  render={ () => <Home prop={prop} /> }  />
-          {/* <Route exact path="/login" component={ Login } /> */}
+          {/* <PrivateRoute exact path="/protected"  render={ () => <Home /> }  />  */}
+          {/* Commented out PrivateRoute/protected path until I get backend endpoints */}
+          <Route exact path="/protected"  render={ () => <Home /> }  />
           <Route exact path="/login" render={ () => 
             <Login 
               change={change}
@@ -168,7 +157,6 @@ const loginSubmit = () => {
               setSchema={setSchema}
             
             /> } />
-          {/* <Route path='/signup' component={ Signup } /> */}
           <Route path='/signup' render={ () => 
             <Signup 
               change={change}
