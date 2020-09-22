@@ -8,11 +8,9 @@ const userData=fakeData
 const userPlants=userData.plants
 
 const PlantList=()=>{
-console.log(userPlants)
     return(
         <div>
-            <h2>Plant List</h2>
-            <p>List of plants goes here</p>
+            <h2>My Plants</h2>
             {
                 userPlants.map(plant=>{
                     return(<PlantCard 

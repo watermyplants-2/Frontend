@@ -10,6 +10,7 @@ const StyledDiv = styled.div`
     .plants {
         grid-area: plants;
         height: 300px;
+        overflow:scroll;
     };
     .sidebar {
         grid-area: sidebar

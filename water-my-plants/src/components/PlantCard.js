@@ -4,19 +4,20 @@ import styled from 'styled-components';
 
 
 const PlantCard=(plant)=>{
-    // console.log(plant)
-   const { nickname, species, h20Interval, image } = plant.plant
-    // console.log(plant.plant.nickname)
+   const { nickname, species, waterInterval, image, id} = plant.plant
+   console.log(plant.plant)
 
     const StyledDiv = styled.div`
     .plantCard{
         border: 1px solid white;
     }
     .image {
-        background-color:red;
+        /* background-color:red; */
+        background-image: url(${image});
         margin:auto;
-        height:20px;
-        width:20px;
+        height:50px;
+        width:50px;
+        background-size:100%;
     }
 `
     return(
@@ -25,6 +26,7 @@ const PlantCard=(plant)=>{
                 <div className="image"></div>
                 <h3 classname="nickname">Name: {nickname}</h3>
                 <p classname="species">{species}</p>
+                <p>Water every {waterInterval} days</p>
             </div>
         </StyledDiv>
     )

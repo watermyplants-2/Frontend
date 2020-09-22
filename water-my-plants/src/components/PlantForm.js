@@ -8,8 +8,7 @@ import React from 'react'
 const PlantForm=()=>{
     return(
         <div>
-            <h2>Plant Form</h2>
-            <p>Add a new Plant</p>
+            <h2>New Plant</h2>
             <form id="plantForm">
                 <label>
                     Name:
@@ -24,7 +23,7 @@ const PlantForm=()=>{
                     <input type="text" name="image" />
                 </label>
                 <label>
-                    Water me every <input name="h20Interval" /> days
+                    Water me every <input name="waterInterval" /> days
                 </label>
                 <button>Add</button>
             </form>
