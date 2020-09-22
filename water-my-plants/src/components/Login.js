@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link}  from "react-router-dom";
-import * as yup from 'yup'
-import schema from './loginSchema'
-import axios from 'axios'
+import { connect } from "react-redux";
+import { login } from "../store/actions/plantActions";
+import * as yup from 'yup';
+import schema from './loginSchema';
 
 //----------------------------//
 //   Initial Values
@@ -27,7 +28,7 @@ const initialDisabled=true
 //---------------------------------------------
 //   Login Component
 //---------------------------------------------
-const Login = (props) => {
+const Login = ({ login }) => {
 
 
     //----------------------------//
@@ -37,7 +38,6 @@ const Login = (props) => {
     const [formValues,setFormValues]=useState(initialFormValues)
     const [formErrors, setFormErrors]=useState(initialFormErrors)
     const [disabled, setDisabled]=useState(initialDisabled)
-    
 
 
     //----------------------------//
@@ -71,7 +71,8 @@ const Login = (props) => {
       }
 
       const postLogin=newLogin=>{
-          console.log("Placeholder - post Login", newLogin)
+            console.log("Placeholder - post Login", newLogin);
+            login( newLogin ); // redux handles the axios request
       }
 
     // const postLogin = newLogin => {
@@ -161,4 +162,8 @@ const Login = (props) => {
     )
 };
 
-export default Login;
+const mapStateToProps = state => {
+    return { };
+};
+
+export default connect( mapStateToProps, { login })( Login );

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Signup from './Signup';
 import Login from './Login';
 import Home from './Home';
 // import PrivateRoute from "./PrivateRoute";
-import axios from 'axios'
 
 function App() {
 
