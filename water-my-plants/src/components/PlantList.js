@@ -8,7 +8,7 @@ const userData=fakeData
 const userPlants=userData.plants
 
 const PlantList=()=>{
-
+console.log(userPlants)
     return(
         <div>
             <h2>Plant List</h2>

@@ -2,19 +2,29 @@ import React from 'react'
 import styled from 'styled-components';
 
 
-const StyledDiv = styled.div`
+
+const PlantCard=(plant)=>{
+    // console.log(plant)
+   const { nickname, species, h20Interval, image } = plant.plant
+    // console.log(plant.plant.nickname)
+
+    const StyledDiv = styled.div`
     .plantCard{
         border: 1px solid white;
     }
-
+    .image {
+        background-color:red;
+        margin:auto;
+        height:20px;
+        width:20px;
+    }
 `
-const PlantCard=(plant)=>{
-    const { nickname } = plant
     return(
         <StyledDiv>
             <div className="plantCard">
-                <h3>Name: {nickname}</h3>
-                <p>Species: {plant.species}</p>
+                <div className="image"></div>
+                <h3 classname="nickname">Name: {nickname}</h3>
+                <p classname="species">{species}</p>
             </div>
         </StyledDiv>
     )
