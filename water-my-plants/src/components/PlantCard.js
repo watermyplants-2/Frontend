@@ -1,12 +1,22 @@
 import React from 'react'
+import styled from 'styled-components';
 
 
-const PlantCard=()=>{
+const StyledDiv = styled.div`
+    .plantCard{
+        border: 1px solid white;
+    }
+
+`
+const PlantCard=(plant)=>{
+    const { nickname } = plant
     return(
-        <div>
-            <h3>Plant</h3>
-            <p>this is a plant</p>
-        </div>
+        <StyledDiv>
+            <div className="plantCard">
+                <h3>Name: {nickname}</h3>
+                <p>Species: {plant.species}</p>
+            </div>
+        </StyledDiv>
     )
 
 }
