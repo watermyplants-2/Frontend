@@ -52,11 +52,18 @@ const StyledDiv = styled.div`
     };
 `;
 
+
+
 const Home = () => {
     return (
         <StyledDiv>
+            
+            
             <div className='wrapper'>
-                <div className='nav box'>Nav Bar</div>
+                <div className='nav box'>
+                    Nav Bar
+                    <button>log out</button>
+                </div>
                 <section className="sidebar">
                     <div className='profile box'>Profile</div> 
                     <div className='addPlant box'>Add Plant</div>
