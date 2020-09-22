@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import signupSchema from './signupSchema'
+import { Link} from "react-router-dom";
 
 const Signup = (props) => {
     const { change, submit, disabled, errors, setSchema } = props
@@ -26,6 +27,17 @@ useEffect(()=>{
 
     return(
         <div>
+            <ul>
+                <li>
+                    <Link to="/protected">Home</Link>
+                </li>
+                <li>
+                    <Link to="/login">Login</Link>
+                </li>
+                <li>
+                    <Link to="/signup">Signup</Link>
+                </li>
+            </ul>
             <h1>Sign Up:</h1>
             <form onSubmit={onSubmit} id="signupForm">
                 <label htmlFor="username">Username:
