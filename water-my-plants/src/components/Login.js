@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link}  from "react-router-dom";
-import { axiosWithAuth } from "../utils/axiosWithAuth";
-import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { login } from "../store/actions/plantActions";
 import * as yup from 'yup';
 import schema from './loginSchema';
 
@@ -28,7 +28,7 @@ const initialDisabled=true
 //---------------------------------------------
 //   Login Component
 //---------------------------------------------
-const Login = (props) => {
+const Login = ({ login }) => {
 
 
     //----------------------------//
@@ -38,7 +38,6 @@ const Login = (props) => {
     const [formValues,setFormValues]=useState(initialFormValues)
     const [formErrors, setFormErrors]=useState(initialFormErrors)
     const [disabled, setDisabled]=useState(initialDisabled)
-    let history = useHistory();
 
 
     //----------------------------//
@@ -72,18 +71,8 @@ const Login = (props) => {
       }
 
       const postLogin=newLogin=>{
-          console.log("Placeholder - post Login", newLogin);
-
-          axiosWithAuth()
-            .post( '/api/login', newLogin )
-                .then( response => {
-                    console.log('post response ', response)
-                    // localStorage.setItem( "token", response.data.payload );
-                    // history.push( "/protected" );
-                })
-                .catch( error => {
-                    console.log('post error ', error)
-                });
+            console.log("Placeholder - post Login", newLogin);
+            login( newLogin ); // redux handles the axios request
       }
 
     // const postLogin = newLogin => {
@@ -173,4 +162,8 @@ const Login = (props) => {
     )
 };
 
-export default Login;
+const mapStateToProps = state => {
+    return { };
+};
+
+export default connect( mapStateToProps, { login })( Login );
