@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link}  from "react-router-dom";
-import * as yup from 'yup'
-import schema from './signupSchema'
-import axios from 'axios'
-
-
-
+import { connect } from "react-redux";
+import { signup } from "../store/actions/plantActions";
+import * as yup from 'yup';
+import schema from './signupSchema';
 
 //----------------------------//
 //   Initial Values
@@ -29,7 +27,7 @@ const initialDisabled=true
 //---------------------------------------------
 //   Signup Component
 //---------------------------------------------
-const Signup = (props) => {
+const Signup = ({ signup }) => {
 
     //----------------------------//
     //   States
@@ -75,6 +73,8 @@ const Signup = (props) => {
 
     const postNewUser=newUser=>{
         console.log("Placeholder - new user signed up",newUser)
+
+        signup( newUser ); // axios call handled in redux
     }
 
 // const postNewUser = newUser => {
@@ -167,4 +167,8 @@ const Signup = (props) => {
     )
 };
 
-export default Signup;
+const mapStateToProps = state => {
+    return { };
+};
+
+export default connect( mapStateToProps, { signup })( Signup );
