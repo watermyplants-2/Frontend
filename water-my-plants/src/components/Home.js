@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PlantList from './PlantList'
+import PlantForm from './PlantForm'
 
 const StyledDiv = styled.div`
     .nav {
@@ -41,6 +43,7 @@ const StyledDiv = styled.div`
     };
     .profile {
         height: 375px;
+        display:none;
     };
     .box {
         background-color: #444;
@@ -66,9 +69,15 @@ const Home = () => {
                 </div>
                 <section className="sidebar">
                     <div className='profile box'>Profile</div> 
-                    <div className='addPlant box'>Add Plant</div>
+                    <div className='addPlant box'>
+                        {/* Add Plant */}
+                        <PlantForm />
+                    </div>
                 </section>
-                <div className='plants box'>Plants</div>
+                <div className='plants box'>
+                    {/* Plants */}
+                    <PlantList />
+                </div>
                 <div className='calendar box'>Calendar</div>
             </div>
         </StyledDiv>
