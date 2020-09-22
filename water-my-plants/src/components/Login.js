@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link}  from "react-router-dom";
-import * as yup from 'yup'
-import schema from './loginSchema'
-import axios from 'axios'
+import { axiosWithAuth } from "../utils/axiosWithAuth";
+import { useHistory } from "react-router-dom";
+import * as yup from 'yup';
+import schema from './loginSchema';
 
 //----------------------------//
 //   Initial Values
@@ -37,7 +38,7 @@ const Login = (props) => {
     const [formValues,setFormValues]=useState(initialFormValues)
     const [formErrors, setFormErrors]=useState(initialFormErrors)
     const [disabled, setDisabled]=useState(initialDisabled)
-    
+    let history = useHistory();
 
 
     //----------------------------//
@@ -71,7 +72,18 @@ const Login = (props) => {
       }
 
       const postLogin=newLogin=>{
-          console.log("Placeholder - post Login", newLogin)
+          console.log("Placeholder - post Login", newLogin);
+
+          axiosWithAuth()
+            .post( '/api/login', newLogin )
+                .then( response => {
+                    console.log('post response ', response)
+                    // localStorage.setItem( "token", response.data.payload );
+                    // history.push( "/protected" );
+                })
+                .catch( error => {
+                    console.log('post error ', error)
+                });
       }
 
     // const postLogin = newLogin => {
