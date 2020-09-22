@@ -1,18 +1,113 @@
-import React, { useEffect } from 'react';
-import signupSchema from './signupSchema'
-import { Link} from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link}  from "react-router-dom";
+import * as yup from 'yup'
+import schema from './signupSchema'
+import axios from 'axios'
 
+
+
+
+//----------------------------//
+//   Initial Values
+//----------------------------//
+
+const initialFormValues={
+    id:"",
+    username:"",
+    email:"",
+    password:"",
+  }
+const initialFormErrors={
+    id:"",
+    username:"",
+    email:"",
+    password:"",
+    }
+const initialDisabled=true
+
+
+//---------------------------------------------
+//   Signup Component
+//---------------------------------------------
 const Signup = (props) => {
-    const { change, submit, disabled, errors, setSchema } = props
+
+    //----------------------------//
+    //   States
+    //----------------------------//
+
+    const [formValues,setFormValues]=useState(initialFormValues)
+    const [formErrors, setFormErrors]=useState(initialFormErrors)
+    const [disabled, setDisabled]=useState(initialDisabled)
+
+    //----------------------------//
+    //   Helpers
+    //----------------------------//
+    const change = (name, value) => {
+    validate(name, value)
+    setFormValues({...formValues,[name]:value})
+    }
+
+    const signupSubmit = () => {
+        const newUser = {
+            username:formValues.username.trim(),
+            email:formValues.email.trim(),
+            password:formValues.password.trim()
+        }
+
+        postNewUser(newUser)
+
+    }
+
+    const validate = (name, value) => {
+        yup
+          .reach(schema, name)
+          .validate(value)
+          .then(valid => {
+            setFormErrors({...formErrors, [name]: ""})
+          })
+          .catch(err => {
+            // debugger
+            setFormErrors({...formErrors,[name]: err.errors[0]})
+            // console.log(err)
+          })
+      }
+        
+
+    const postNewUser=newUser=>{
+        console.log("Placeholder - new user signed up",newUser)
+    }
+
+// const postNewUser = newUser => {
+
+//   axios.post('https://reqres.in/api/users',newUser)
+//   //https://reqres.in/api/users
+
+//     .then(res=>{
+//       console.log(res.data)
+//     })
+//     .catch(err=>{
+//       debugger
+//       console.log(err)
+//     })
+//     .finally(()=>{
+//       setFormValues(initialFormValues)
+//       document.getElementById('signupForm').reset()
+//     })
+
+// }
 
 
-useEffect(()=>{
-    setSchema(signupSchema)
-},[])
+    //----------------------------//
+    //   Event Handlers
+    //----------------------------//
 
-//----------------------------//
-//   Event Handlers
-//----------------------------//
+    useEffect(() => {
+        schema.isValid(formValues)
+          .then(valid => {
+            setDisabled(!valid)
+          })
+      }, [formValues])
+      
 
     const onChange = evt => {
         const { name,value } = evt.target
@@ -21,7 +116,7 @@ useEffect(()=>{
 
     const onSubmit = evt => {
         evt.preventDefault()
-        submit()
+        signupSubmit()
     }
 
 
@@ -64,9 +159,9 @@ useEffect(()=>{
                 <button disabled={disabled}>Sign Up</button>
             </form>
             <div id="errorFrame">
-                {errors.username}
-                {errors.email}
-                {errors.password}
+                    {formErrors.username}
+                    {formErrors.email}
+                    {formErrors.password}
             </div>
         </div>
     )
