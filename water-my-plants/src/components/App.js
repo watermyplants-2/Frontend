@@ -67,6 +67,26 @@ const postNewUser = newUser => {
 
 }
 
+const postLogin = newLogin => {
+
+  axios.post('https://reqres.in/api/users', newLogin)
+  //https://reqres.in/api/users
+
+    .then(res=>{
+      console.log(res.data)
+    })
+    .catch(err=>{
+      debugger
+      console.log(err)
+    })
+    .finally(()=>{
+      setFormValues(initialFormValues)
+      document.getElementById('loginForm').reset()
+    })
+
+}
+
+
 const validate = (name, value) => {
   yup
     .reach(schema, name)
@@ -98,7 +118,7 @@ const change = (name, value) => {
   setFormValues({...formValues,[name]:value})
 }
 
-const submit = () => {
+const signupSubmit = () => {
   const newUser = {
     username:formValues.username.trim(),
     email:formValues.email.trim(),
@@ -108,6 +128,17 @@ const submit = () => {
   postNewUser(newUser)
 
 }
+
+const loginSubmit = () => {
+  const newLogin = {
+    username:formValues.username.trim(),
+    password:formValues.password.trim()
+  }
+
+  postLogin(newLogin)
+
+}
+
 
 
   return (
@@ -120,7 +151,7 @@ const submit = () => {
           <Route exact path="/login" render={ () => 
             <Login 
               change={change}
-              submit={submit}
+              submit={loginSubmit}
               disabled={disabled}
               errors={formErrors}
               setSchema={setSchema}
@@ -129,7 +160,7 @@ const submit = () => {
           <Route path='/signup' render={ () => 
             <Signup 
               change={change}
-              submit={submit}
+              submit={signupSubmit}
               disabled={disabled}
               errors={formErrors}
               setSchema={setSchema}
