@@ -3,10 +3,15 @@ import PlantCard from './PlantCard'
 import fakeData from './fakeData.json'
 
 
-
+//----------------------------//
+//   Test Values
+//----------------------------//
 const userData=fakeData
 const userPlants=userData.plants
 
+//---------------------------------------------
+//   Plant List Component
+//---------------------------------------------
 const PlantList=()=>{
     return(
         <div>
