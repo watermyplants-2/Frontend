@@ -7,7 +7,7 @@ import shortid from 'shortid'
 //   Plant Card Component
 //---------------------------------------------
 const PlantCard=(plant)=>{
-   const { nickname, species, waterInterval, image, id} = plant.plant
+   const { nickname, species, waterInterval, image_url, id} = plant.plant
 
     //----------------------------//
     //   Styles
@@ -19,7 +19,7 @@ const PlantCard=(plant)=>{
     }
     .image {
         /* background-color:red; */
-        background-image: url(${image});
+        background-image: url(${image_url});
         margin:auto;
         height:100px;
         width:100%;
@@ -28,7 +28,7 @@ const PlantCard=(plant)=>{
         background-position:center;
     }
 `
-//---------------------------------------------
+// ---------------------------------------------
 //   Return
 //---------------------------------------------
     return(
