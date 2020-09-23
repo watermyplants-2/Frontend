@@ -1,0 +1,131 @@
+ /*
+ Color Reference:
+
+ Paper white:
+ #E8DFE0
+
+ Soft green:
+ #8D9B6A
+
+ Teal:
+ #8A9EA7
+
+ Light Brown:
+ #DAB692
+
+ Dark Brown:
+#8F5B34
+
+
+ */
+ 
+ 
+ 
+ 
+ 
+ /* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* end Meyer reset */
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+/* end reset */
+
+
+/*-------------------------------------*/
+/* Global styles & font import        */
+/*-------------------------------------*/
+
+
+body, *{
+	font-size:1.6rem;
+	font-family:"Source Serif Pro", serif;
+}
+body {
+	background-color:#FFFFFF;
+}
+a {
+	font-weight:bold;
+	text-decoration:none;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&family=Source+Serif+Pro:ital,wght@0,400;0,700;1,400&display=swap');
+
+
+h1{
+	font-family:'Raleway',sans-serif;
+	font-weight:600;
+	font-size:4rem;
+}
+h2 {
+	font-family:'Raleway',sans-serif;
+	font-weight:500;
+	font-size:3.2rem;
+}
+h3{
+	font-size:2.4rem;
+}
+button{
+	font-weight:700;
+	border:1px solid #dddddd;
+	border-radius:10px;
+	padding:.6rem 1.2rem;
+}
+input {
+	border-radius:10px;
+	border:1px solid #dddddd;
+	padding:.5rem;
+}
+
