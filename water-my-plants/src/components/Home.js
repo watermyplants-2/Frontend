@@ -104,6 +104,10 @@ const Home = () => {
         // new plant adds to top of list
     }
 
+    const edit =()=>{
+        console.log("Placeholder - edit button")
+    }
+
 //---------------------------------------------
 //   Return
 //---------------------------------------------
@@ -129,6 +133,7 @@ const Home = () => {
                     {/* Plants */}
                     <PlantList 
                         plants={userPlants}
+                        edit={edit}
                     />
                 </div>
                 <div className='calendar box'>Calendar</div>

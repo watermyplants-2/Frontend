@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PlantCard from './PlantCard'
 
 //---------------------------------------------
 //   Plant List Component
 //---------------------------------------------
 const PlantList=(props)=>{
-    const { plants }=props
+    const { plants, edit }=props
 //---------------------------------------------
 //   Return
 //---------------------------------------------
@@ -16,6 +16,7 @@ const PlantList=(props)=>{
                 plants.map(plant=>{
                     return(<PlantCard 
                         plant={plant}
+                        edit={edit}
                     />)
                 })
             }

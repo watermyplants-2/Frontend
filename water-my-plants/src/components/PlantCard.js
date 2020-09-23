@@ -1,13 +1,15 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled from 'styled-components'
+import { BrowserRouter as Router, Route, Link} from 'react-router-dom' 
 import shortid from 'shortid'
 
 
 //---------------------------------------------
 //   Plant Card Component
 //---------------------------------------------
-const PlantCard=(plant)=>{
-   const { nickname, species, waterInterval, image, id} = plant.plant
+const PlantCard=(props)=>{
+   const { nickname, species, waterInterval, image, id} = props.plant
+   const { edit } = props
 
     //----------------------------//
     //   Styles
@@ -27,14 +29,31 @@ const PlantCard=(plant)=>{
         background-repeat:none;
         background-position:center;
     }
+    .edit, .save {
+        text-align:center;
+        background-color:gray;
+        color:white;
+        text-decoration:none;
+        width:3rem;
+        padding:.4rem;
+        cursor:pointer;
+    }
 `
+
+
+
 //---------------------------------------------
 //   Return
 //---------------------------------------------
     return(
         <StyledDiv key={id}> 
             <div className="plantCard">
-                <div className="image"></div>
+                
+                <div className="image">
+                    <Link >
+                     <p class="edit" onClick={edit}>edit</p>
+                    </Link>
+                </div>
                 <h3 className="nickname">{nickname}</h3>
                 <p className="species">{species}</p>
                 <p>Water every {waterInterval} days</p>
