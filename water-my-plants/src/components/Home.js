@@ -9,14 +9,14 @@ import fakeData from './fakeData.json'
 //----------------------------//
 //   Test Values
 //----------------------------//
-const userData=fakeData
-const fakePlants=userData.plants
+// const userData=fakeData
+// const fakePlants=userData.plants
 // const testUserId=39
 
 //----------------------------//
 //   Initial Values
 //----------------------------//
-const initialUserPlants=fakePlants
+const initialUserPlants=[]
 const initialServerPlants=[]
 
 //----------------------------//
@@ -117,8 +117,7 @@ const Home = () => {
     //set current userID
     // const userId=testUserId
 
-    //getPlants using axios
-    const getPlants=()=>{
+    useEffect(()=>{
         axios.get('https://water-my-plants-four.herokuapp.com/plants')
             .then(res => {
                 console.log("GET request sent")
@@ -129,7 +128,12 @@ const Home = () => {
             .catch(err => {
                 console.log(err)
             })
-    }
+    },[])
+
+    // //getPlants using axios
+    // const getPlants=()=>{
+
+    // }
 
 
     //filter serverPlants and set to userPlants
@@ -170,7 +174,7 @@ const Home = () => {
         console.log("User plants:", userPlants)
     }
 
-    
+
 
 
 //---------------------------------------------
@@ -195,13 +199,6 @@ const Home = () => {
                     </div>
                 </section>
                 <div className='plants box'>
-
-
-                    <button onClick={getPlants}>Server Plants</button>
-                    <button onClick={clickTest}>Log</button>
-
-
-
                     {/* Plants */}
                     <PlantList 
                         plants={userPlants}
