@@ -24,5 +24,5 @@ const PlantList=(props)=>{
     )
 
 }
-
+ 
 export default PlantList
