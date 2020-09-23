@@ -11,12 +11,18 @@ import Footer from './Footer'
 
 const StyledDiv = styled.div`
 
-.wrapper{
+.background{
     background-color:#222822;
     height:100vh;
     background-image:url('https://cdn.shopify.com/s/files/1/1637/3125/files/FoliaCollective-PlantsToGo4-Header_1440x640.jpg');
     background-repeat:no-repeat;
     background-size:cover;
+}
+.wrapper{
+    background-color:#FFFFFF;
+}
+
+.navWrap{
 }
 .navbar{
     background-color:#DAB692;
@@ -27,7 +33,9 @@ const StyledDiv = styled.div`
         display:inline-block;
         padding:2rem 5rem 2rem 5rem;
         border-right:1px solid #8F5B34;
-        border-bottom:1px solid #8F5B34;
+    }
+    li:first-child{
+        border-left:1px solid #8F5B34;
     }
 }
 
@@ -178,18 +186,21 @@ const Login = ({ login }) => {
     return(
         <>
             <StyledDiv>
-            <div className="wrapper">
-                <ul className="navbar">
-                    <li>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link to="/login">Login</Link>
-                    </li>
-                    <li>
-                        <Link to="/signup">Signup</Link>
-                    </li>
-                </ul>
+            <div className="background">
+                <div className="wrapper">
+                <div className="navWrap">
+                    <ul className="navbar">
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/login">Login</Link>
+                        </li>
+                        <li>
+                            <Link to="/signup">Signup</Link>
+                        </li>
+                    </ul>
+                </div>
                 <div class="formFrame">
                     <h1>Login:</h1>
                     <form onSubmit={onSubmit}>
@@ -216,6 +227,7 @@ const Login = ({ login }) => {
                     </div>
                 </div>
                 <Footer />
+                </div>
             </div>
             
 
