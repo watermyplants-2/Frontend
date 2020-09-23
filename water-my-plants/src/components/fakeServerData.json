@@ -1,0 +1,110 @@
+[
+    {
+        "id": 68,
+        "user_id": 2,
+        "nickname": "parting leaves",
+        "species": "mero meafis",
+        "h2o_frequency": 25,
+        "image_url": "https://images.unsplash.com/photo-1574956713019-340d3c994f5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        "isWatered": "2020-06-23T00:00:00.000Z"
+    },
+    {
+        "id": 67,
+        "user_id": 2,
+        "nickname": "sunan flower",
+        "species": "reomo reco",
+        "h2o_frequency": 15,
+        "image_url": "https://images.unsplash.com/photo-1465515771403-eb9fe92e9a8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        "isWatered": "2020-06-13T00:00:00.000Z"
+    },
+    {
+        "id": 103,
+        "user_id": 30,
+        "nickname": "cactus",
+        "species": "cacti",
+        "h2o_frequency": 22,
+        "image_url": "https://images-na.ssl-images-amazon.com/images/I/81g7NtpwkRL._AC_SL1500_.jpg",
+        "isWatered": "2020-06-20T00:00:00.000Z"
+    },
+    {
+        "id": 113,
+        "user_id": 2,
+        "nickname": "reek",
+        "species": "nucral",
+        "h2o_frequency": 25,
+        "image_url": "https://images.unsplash.com/photo-1554393532-989e8d86eca2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        "isWatered": "2020-06-23T00:00:00.000Z"
+    },
+    {
+        "id": 115,
+        "user_id": 33,
+        "nickname": "hello",
+        "species": "world",
+        "h2o_frequency": 13,
+        "image_url": "",
+        "isWatered": "2020-06-11T00:00:00.000Z"
+    },
+    {
+        "id": 116,
+        "user_id": 2,
+        "nickname": "seaweed",
+        "species": "reomo reco",
+        "h2o_frequency": 33,
+        "image_url": "",
+        "isWatered": "2020-07-01T00:00:00.000Z"
+    },
+    {
+        "id": 118,
+        "user_id": 2,
+        "nickname": "2",
+        "species": "2",
+        "h2o_frequency": 23,
+        "image_url": "",
+        "isWatered": null
+    },
+    {
+        "id": 120,
+        "user_id": 2,
+        "nickname": "4",
+        "species": "4",
+        "h2o_frequency": 44,
+        "image_url": "",
+        "isWatered": null
+    },
+    {
+        "id": 121,
+        "user_id": 2,
+        "nickname": "5",
+        "species": "5",
+        "h2o_frequency": 55,
+        "image_url": "",
+        "isWatered": null
+    },
+    {
+        "id": 122,
+        "user_id": 2,
+        "nickname": "6",
+        "species": "6",
+        "h2o_frequency": 66,
+        "image_url": "",
+        "isWatered": null
+    },
+    {
+        "id": 66,
+        "user_id": 2,
+        "nickname": "lia folwer",
+        "species": "remuar moro",
+        "h2o_frequency": 11,
+        "image_url": "https://images.unsplash.com/photo-1444021465936-c6ca81d39b84?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        "isWatered": "2020-06-09T00:00:00.000Z"
+    },
+    {
+        "id": 95,
+        "user_id": 29,
+        "nickname": "fig leaves",
+        "species": "remuar moro",
+        "h2o_frequency": 23,
+        "image_url": "https://images.unsplash.com/photo-1495908089371-3f0318f8878f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+        "isWatered": "2020-06-21T00:00:00.000Z"
+    }
+]

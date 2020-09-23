@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios'
 import styled from 'styled-components';
 import PlantList from './PlantList'
 import PlantForm from './PlantForm'
@@ -10,12 +11,13 @@ import fakeData from './fakeData.json'
 //----------------------------//
 const userData=fakeData
 const fakePlants=userData.plants
-
+// const testUserId=39
 
 //----------------------------//
 //   Initial Values
 //----------------------------//
 const initialUserPlants=fakePlants
+const initialServerPlants=[]
 
 //----------------------------//
 //   Styles
@@ -87,6 +89,9 @@ const Home = () => {
     //   States
     //----------------------------//
 
+    //serverPlants
+    const [serverPlants, setServerPlants] = useState(initialServerPlants)
+
     //plantList
     const [userPlants, setUserPlants] = useState(initialUserPlants)
 
@@ -94,8 +99,8 @@ const Home = () => {
     //   Helpers
     //----------------------------//
 
-    //getPlants
-    const getPlants=(newPlant)=>{
+    //addPlant
+    const addPlant=(newPlant)=>{
         setUserPlants([...userPlants,newPlant])
         console.log("User's new plant",newPlant)
         //replace this with GET request when server is ready
@@ -103,6 +108,70 @@ const Home = () => {
         // nice to have:
         // new plant adds to top of list
     }
+
+    //----------------------------//
+    //   Remote Data
+    //----------------------------//
+    
+
+    //set current userID
+    // const userId=testUserId
+
+    //getPlants using axios
+    const getPlants=()=>{
+        axios.get('https://water-my-plants-four.herokuapp.com/plants')
+            .then(res => {
+                console.log("GET request sent")
+                console.log(res.data)
+                setServerPlants(res.data)
+                setUserPlants(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+
+    //filter serverPlants and set to userPlants
+    // const filterPlants=()=>{
+
+
+    //     // //-------------------------
+    //     // const data=serverPlants
+
+    //     // // for matching userID
+    //     // const filtered=data.filter(o=>{
+    //     //     if(o["user_id"]===userId){
+    //     //         return true
+    //     //     }else{
+    //     //         return false
+    //     //     }
+    //     // })
+    //     // console.log(filtered)
+    //     // // for plants with no fields missing or null
+    //     // //-------------------------
+        
+    //     // const data=serverPlants
+    //     // const filtered=data.filter(o=>{
+    //     //        return (o["user_id"])
+    //     //     }
+    //     // )
+    //     // console.log(filtered)
+
+    // }
+
+
+    //----------------------------//
+    //   Events & Effects
+    //----------------------------//
+
+    const clickTest=()=>{
+        console.log("Server plants:", serverPlants)
+        console.log("User plants:", userPlants)
+    }
+
+    
+
 
 //---------------------------------------------
 //   Return
@@ -121,11 +190,18 @@ const Home = () => {
                     <div className='addPlant box'>
                         {/* Add Plant */}
                         <PlantForm 
-                            getPlants={getPlants}
+                            addPlant={addPlant}
                         />
                     </div>
                 </section>
                 <div className='plants box'>
+
+
+                    <button onClick={getPlants}>Server Plants</button>
+                    <button onClick={clickTest}>Log</button>
+
+
+
                     {/* Plants */}
                     <PlantList 
                         plants={userPlants}

@@ -34,7 +34,7 @@ const initialDisabled=true
 //   Plant Form Component
 //---------------------------------------------
 const PlantForm=(props)=>{
-    const {getPlants} = props
+    const {addPlant} = props
 
     //----------------------------//
     //   States
@@ -89,11 +89,11 @@ const PlantForm=(props)=>{
     //postPlants
     const postPlant=(newPlant)=>{
         console.log("New plant created",newPlant)
-        getPlants(newPlant)
+        addPlant(newPlant)
         
     }
 
-    //getPlants
+    //addPlant
 
 
     //----------------------------//
