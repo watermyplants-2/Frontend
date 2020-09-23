@@ -13,7 +13,7 @@ const initialFormValues={
     id:"",
     nickname:"",
     species:"",
-    image:"",
+    image_url:"",
     waterInterval:0
 }
 
@@ -22,7 +22,7 @@ const initialFormErrors={
     id:"",
     nickname:"",
     species:"",
-    image:"",
+    image_url:"",
     waterInterval:""
 }
 const initialPlantList=[]
@@ -63,7 +63,7 @@ const PlantForm=(props)=>{
             id:shortid.generate(),
             nickname:formValues.nickname.trim(),
             species:formValues.species.trim(),
-            image:formValues.image.trim(),
+            image_url:formValues.image_url.trim(),
             waterInterval:formValues.waterInterval.trim()
         }
         postPlant(newPlant)
@@ -145,7 +145,7 @@ const PlantForm=(props)=>{
                     Image URL:
                     <input 
                         type="text" 
-                        name="image" 
+                        name="image_url" 
                         onChange={onChange}
                     />
                 </label>
@@ -160,7 +160,7 @@ const PlantForm=(props)=>{
                 <div className="errors">
                     <p>{formErrors.nickname}</p>
                     <p>{formErrors.species}</p>
-                    <p>{formErrors.image}</p>
+                    <p>{formErrors.image_url}</p>
                     <p>{formErrors.waterInterval}</p>
                 </div>
             </form>

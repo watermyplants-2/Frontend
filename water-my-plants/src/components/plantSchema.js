@@ -4,7 +4,7 @@ export default yup.object().shape({
     nickname: yup.string()
         .required('Plant name is required')
         .min(3,"Please enter a plant name"),
-    image: yup.string()
+    image_url: yup.string()
         .required('Plant image is required')
         .min(3,"Please enter a plant image URL"),
     waterInterval: yup.number()
