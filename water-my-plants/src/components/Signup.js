@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { signup } from "../store/actions/plantActions";
 import * as yup from 'yup';
 import schema from './signupSchema';
-
+import Footer from './Footer'
 //----------------------------//
 //   Initial Values
 //----------------------------//
@@ -163,6 +163,7 @@ const Signup = ({ signup }) => {
                     {formErrors.email}
                     {formErrors.password}
             </div>
+            <Footer />
         </div>
     )
 };
