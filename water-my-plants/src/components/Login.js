@@ -23,9 +23,16 @@ const StyledDiv = styled.div`
 }
 
 .navWrap{
+    width:100%;
+    background-color:#DAB692;
 }
 .navbar{
+
     background-color:#DAB692;
+    display:flex;
+    flex-flow:row;
+    justify-content:center;
+
     a, :hover,:active,:visited {
         color:#8F5B34;
     }
@@ -57,6 +64,9 @@ const StyledDiv = styled.div`
     }
     input{
         margin:0 0 0 .7rem; 
+    }
+    button{
+        color:
     }
 
 }
