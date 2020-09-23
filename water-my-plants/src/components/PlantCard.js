@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
+import shortid from 'shortid'
 
 
 //---------------------------------------------
@@ -7,12 +8,10 @@ import styled from 'styled-components';
 //---------------------------------------------
 const PlantCard=(plant)=>{
    const { nickname, species, waterInterval, image, id} = plant.plant
-//    console.log(plant.plant)
 
-
-
-
-
+    //----------------------------//
+    //   Styles
+    //----------------------------//
 
     const StyledDiv = styled.div`
     .plantCard{
@@ -29,8 +28,11 @@ const PlantCard=(plant)=>{
         background-position:center;
     }
 `
+//---------------------------------------------
+//   Return
+//---------------------------------------------
     return(
-        <StyledDiv>
+        <StyledDiv key={id}> 
             <div className="plantCard">
                 <div className="image"></div>
                 <h3 className="nickname">{nickname}</h3>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect }from 'react'
+import shortid from 'shortid'
 import * as yup from 'yup'
 import schema from './plantSchema'
 
@@ -24,6 +25,7 @@ const initialFormErrors={
     image:"",
     waterInterval:""
 }
+const initialPlantList=[]
 
 //disabled
 const initialDisabled=true
@@ -31,8 +33,8 @@ const initialDisabled=true
 //---------------------------------------------
 //   Plant Form Component
 //---------------------------------------------
-const PlantForm=()=>{
-
+const PlantForm=(props)=>{
+    const {getPlants} = props
 
     //----------------------------//
     //   States
@@ -54,10 +56,11 @@ const PlantForm=()=>{
         validate(name, value)
         setFormValues({...formValues,[name]:value})
     }
+
     //submit
     const submit = () => {
         const newPlant={
-            id:formValues.id,
+            id:shortid.generate(),
             nickname:formValues.nickname.trim(),
             species:formValues.species.trim(),
             image:formValues.image.trim(),
@@ -65,6 +68,7 @@ const PlantForm=()=>{
         }
         postPlant(newPlant)
     }
+
     //validate
     const validate = (name,value)=>{
         yup
@@ -84,7 +88,9 @@ const PlantForm=()=>{
 
     //postPlants
     const postPlant=(newPlant)=>{
-        console.log("Placeholder - new plant created",newPlant)
+        console.log("New plant created",newPlant)
+        getPlants(newPlant)
+        
     }
 
     //getPlants
@@ -112,7 +118,9 @@ const PlantForm=()=>{
         evt.preventDefault()
         submit()
     }
-
+//---------------------------------------------
+//   Return
+//---------------------------------------------
     return(
         <div>
             <h2>New Plant</h2>

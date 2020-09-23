@@ -1,7 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import PlantList from './PlantList'
 import PlantForm from './PlantForm'
+import fakeData from './fakeData.json'
+
+
+//----------------------------//
+//   Test Values
+//----------------------------//
+const userData=fakeData
+const fakePlants=userData.plants
+
+
+//----------------------------//
+//   Initial Values
+//----------------------------//
+const initialUserPlants=fakePlants
+
+//----------------------------//
+//   Styles
+//----------------------------//
 
 const StyledDiv = styled.div`
     .nav {
@@ -54,11 +72,41 @@ const StyledDiv = styled.div`
         margin: 10px;
         text-align: center;
     };
+    .errors{
+        color:red;  
+    };
 `;
 
 
-
+//---------------------------------------------
+//   Home Component
+//---------------------------------------------
 const Home = () => {
+
+    //----------------------------//
+    //   States
+    //----------------------------//
+
+    //plantList
+    const [userPlants, setUserPlants] = useState(initialUserPlants)
+
+    //----------------------------//
+    //   Helpers
+    //----------------------------//
+
+    //getPlants
+    const getPlants=(newPlant)=>{
+        setUserPlants([...userPlants,newPlant])
+        console.log("User's new plant",newPlant)
+        //replace this with GET request when server is ready
+
+        // nice to have:
+        // new plant adds to top of list
+    }
+
+//---------------------------------------------
+//   Return
+//---------------------------------------------
     return (
         <StyledDiv>
             
@@ -72,12 +120,16 @@ const Home = () => {
                     <div className='profile box'>Profile</div> 
                     <div className='addPlant box'>
                         {/* Add Plant */}
-                        <PlantForm />
+                        <PlantForm 
+                            getPlants={getPlants}
+                        />
                     </div>
                 </section>
                 <div className='plants box'>
                     {/* Plants */}
-                    <PlantList />
+                    <PlantList 
+                        plants={userPlants}
+                    />
                 </div>
                 <div className='calendar box'>Calendar</div>
             </div>
