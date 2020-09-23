@@ -7,37 +7,37 @@
 "plants":[
     {
         "nickname":"Roses",
-        "id":1,
+        "id":"xuch1YZij",
         "species":"Rosa damascena",
-        "h2oInterval":5,
+        "waterInterval":5,
         "image":"https://upload.wikimedia.org/wikipedia/commons/d/d1/Rosa_damascena5.jpg"
     },
     {
         "nickname":"Spider Plant",
-        "id":2,
+        "id":"fmO4S97m_U",
         "species":"Chlorophytum comosum",
-        "h20Interval":7,
+        "waterInterval":7,
         "image":"https://originalhomesteading.com/wp-content/uploads/Spider-Plant-1.jpg"
     },
     {
         "nickname":"Aloe",
-        "id":4,
+        "id":"-zb0oy6ij1",
         "species":"Aloe vera",
-        "h20Interval":21,
+        "waterInterval":21,
         "image":"https://www.almanac.com/sites/default/files/image_nodes/aloe-vera-white-pot_sunwand24-ss_edit.jpg"
     },
     {
         "nickname":"Snake Plant",
-        "id":5,
+        "id":"uadlfMMYa8",
         "species":"Dracaena trifasciata",
-        "h20Interval":10,
+        "waterInterval":10,
         "image":"https://s3.amazonaws.com/eit-planttoolbox-prod/media/images/Sansevieria_trifasci_JggsQDEr5BQ4.jpeg"
     },
     {
         "nickname":"Air Plant",
-        "id":6,
+        "id":"p8xPuwbTah",
         "species":"Tillandsia stricta",
-        "h20Interval":10,
+        "waterInterval":10,
         "image":"https://upload.wikimedia.org/wikipedia/commons/3/30/Tillandsia_stricta_2.jpg"
     }
 ]
