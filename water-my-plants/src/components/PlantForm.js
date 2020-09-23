@@ -1,5 +1,5 @@
 import React, { useState, useEffect }from 'react'
-import shortid from 'shortid'
+// import shortid from 'shortid'
 import * as yup from 'yup'
 import schema from './plantSchema'
 
@@ -25,7 +25,7 @@ const initialFormErrors={
     image_url:"",
     waterInterval:""
 }
-const initialPlantList=[]
+// const initialPlantList=[]
 
 //disabled
 const initialDisabled=true
@@ -60,7 +60,7 @@ const PlantForm=(props)=>{
     //submit
     const submit = () => {
         const newPlant={
-            id:shortid.generate(),
+            // id:shortid.generate(),
             nickname:formValues.nickname.trim(),
             species:formValues.species.trim(),
             image_url:formValues.image_url.trim(),

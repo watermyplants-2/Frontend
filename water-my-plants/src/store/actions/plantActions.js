@@ -1,6 +1,7 @@
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 
-export const USER_INFO = 'user-info';
+export const ADD_USER = 'add-user';
+export const ADD_USERNAME = 'add-username';
 
 export const login = data => {
     return ( dispatch ) => {
@@ -10,7 +11,7 @@ export const login = data => {
                     console.log( 'login response ', response.data )
                     localStorage.setItem( "token", response.data.token );
                     // history.push( "/protected" );
-                    // dispatch({type: USER_INFO, payload: data}) 
+                    // dispatch({type: ADD_USERNAME, payload: data}) 
                 })
                 .catch( error => {
                     console.log('login error ', error)
@@ -25,6 +26,7 @@ export const signup = data => {
             .post( '/auth/register', data )
                 .then( response => {
                     console.log( 'signup response ', response.data.data )
+                    dispatch({ type: ADD_USER, payload: response.data.data })
                     // history.push( "/login" );
                 })
                 .catch( error => {

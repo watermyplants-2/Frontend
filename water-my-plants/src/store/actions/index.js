@@ -1,5 +1,6 @@
 export {
-    USER_INFO, 
+    ADD_USER, 
+    ADD_USERNAME,
     login,
     signup
 } from './plantActions';
