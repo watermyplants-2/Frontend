@@ -4,8 +4,8 @@ import {
 
 const initialState = {
     username: '',
-    password: '',
-    email: ''
+    email: '',
+    password: ''
 }
 
 export default( state = initialState, action ) => {

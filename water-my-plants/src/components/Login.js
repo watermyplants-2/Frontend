@@ -10,16 +10,14 @@ import schema from './loginSchema';
 //----------------------------//
 
 const initialFormValues={
-    id:"",
     username:"",
-    email:"",
     password:"",
+    email:""
   }
 const initialFormErrors={
-    id:"",
     username:"",
-    email:"",
     password:"",
+    email:""
     }
 const initialDisabled=true
 
@@ -124,7 +122,7 @@ const Login = ({ login }) => {
         <>
             <ul>
                 <li>
-                    <Link to="/protected">Home</Link>
+                    <Link to="/">Home</Link>
                 </li>
                 <li>
                     <Link to="/login">Login</Link>
