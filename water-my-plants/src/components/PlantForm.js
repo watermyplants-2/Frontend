@@ -14,7 +14,7 @@ const initialFormValues={
     nickname:"",
     species:"",
     image_url:"",
-    waterInterval:0
+    h2o_frequency:0
 }
 
 //formErrors
@@ -23,7 +23,7 @@ const initialFormErrors={
     nickname:"",
     species:"",
     image_url:"",
-    waterInterval:""
+    h2o_frequency:""
 }
 // const initialPlantList=[]
 
@@ -34,7 +34,7 @@ const initialDisabled=true
 //   Plant Form Component
 //---------------------------------------------
 const PlantForm=(props)=>{
-    const {addPlant} = props
+    const {addPlant, id} = props
 
     //----------------------------//
     //   States
@@ -61,10 +61,11 @@ const PlantForm=(props)=>{
     const submit = () => {
         const newPlant={
             // id:shortid.generate(),
+            user_id: id,
             nickname:formValues.nickname.trim(),
             species:formValues.species.trim(),
+            h2o_frequency: parseInt(formValues.h2o_frequency),
             image_url:formValues.image_url.trim(),
-            waterInterval:formValues.waterInterval.trim()
         }
         postPlant(newPlant)
     }
@@ -151,7 +152,7 @@ const PlantForm=(props)=>{
                 </label>
                 <label>
                     Water me every <input 
-                    name="waterInterval"
+                    name="h2o_frequency"
                     type="number"
                     onChange={onChange}
                     /> days
@@ -161,7 +162,7 @@ const PlantForm=(props)=>{
                     <p>{formErrors.nickname}</p>
                     <p>{formErrors.species}</p>
                     <p>{formErrors.image_url}</p>
-                    <p>{formErrors.waterInterval}</p>
+                    <p>{formErrors.h2o_frequency}</p>
                 </div>
             </form>
         </div>

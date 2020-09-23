@@ -7,7 +7,7 @@ export default yup.object().shape({
     image_url: yup.string()
         .required('Plant image is required')
         .min(3,"Please enter a plant image URL"),
-    waterInterval: yup.number()
+    h2o_frequency: yup.number()
         .typeError('Days must be a number')
         .required('Please enter a number of days')
         .positive('Days must be greater than zero'),

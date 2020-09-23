@@ -7,7 +7,7 @@ import styled from 'styled-components';
 //   Plant Card Component
 //---------------------------------------------
 const PlantCard=(plant)=>{
-   const { nickname, species, waterInterval, image_url, id} = plant.plant
+   const { nickname, species, h2o_frequency, image_url, id} = plant.plant
 
     //----------------------------//
     //   Styles
@@ -37,7 +37,7 @@ const PlantCard=(plant)=>{
                 <div className="image"></div>
                 <h3 className="nickname">{nickname}</h3>
                 <p className="species">{species}</p>
-                <p>Water every {waterInterval} days</p>
+                <p>Water every {h2o_frequency} days</p>
             </div>
         </StyledDiv>
     )

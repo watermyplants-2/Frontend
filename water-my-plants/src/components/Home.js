@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import styled from 'styled-components';
 import PlantList from './PlantList'
 import PlantForm from './PlantForm'
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 // import fakeData from './fakeData.json'
 
 
@@ -18,7 +19,7 @@ import PlantForm from './PlantForm'
 //   Initial Values
 //----------------------------//
 const initialUserPlants=[]
-const initialServerPlants=[]
+// const initialServerPlants=[]
 
 //----------------------------//
 //   Styles
@@ -103,7 +104,7 @@ const Home = ({ username, id}) => {
     //----------------------------//
 
     //serverPlants
-    const [serverPlants, setServerPlants] = useState(initialServerPlants)
+    // const [serverPlants, setServerPlants] = useState(initialServerPlants)
 
     //plantList
     const [userPlants, setUserPlants] = useState(initialUserPlants)
@@ -117,9 +118,18 @@ const Home = ({ username, id}) => {
 
     //addPlant
     const addPlant=(newPlant)=>{
-        setUserPlants([...userPlants,newPlant])
-        console.log("User's new plant",newPlant)
-        //replace this with GET request when server is ready
+        console.log(newPlant)
+        axiosWithAuth()
+            .post('/plants', newPlant)
+            .then(response => {
+                console.log("add plant ", response)
+            })
+            .catch( error => {
+                console.log('add plant error, ', error)
+            })
+            
+        // console.log("User's new plant",newPlant)
+        //replace this with POST request when server is ready
 
         // nice to have:
         // new plant adds to top of list
@@ -136,13 +146,16 @@ const Home = ({ username, id}) => {
     useEffect(()=>{
         axios.get('https://water-my-plants-four.herokuapp.com/plants')
             .then(res => {
-                setServerPlants(res.data)
-                setUserPlants(res.data)
+                // setServerPlants(res.data)
+                setUserPlants(res.data.filter( plants => {
+                    console.log(plants.user_id, id)
+                    return plants.user_id === getId;
+                }))
             })
             .catch(err => {
                 console.log(err)
             })
-    },[])
+    },[id])
 
 
     //filter serverPlants and set to userPlants
@@ -208,6 +221,7 @@ const Home = ({ username, id}) => {
                         {/* Add Plant */}
                         <PlantForm 
                             addPlant={addPlant}
+                            id={getId}
                         />
                     </div>
                 </section>
