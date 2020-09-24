@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { axiosWithAuth } from '../utils/axiosWithAuth';
 import styled from 'styled-components';
 import PlantEditForm from './PlantEditForm';
 // import shortid from 'shortid'
@@ -9,8 +10,20 @@ import PlantEditForm from './PlantEditForm';
 //---------------------------------------------
 const PlantCard=(plant)=>{
     const [isOpen, setIsOpen] = useState(false);
+    const [update, setUpdate] = useState(false);
 
    const { nickname, species, h2o_frequency, image_url, id} = plant.plant
+
+   const deletePlant = () => {
+    axiosWithAuth()
+        .delete(`/plants/${id}`)
+        .then(response => {
+            console.log("deleted plant ", response)
+        })
+        .catch( error => {
+            console.log('deleted plant error, ', error)
+        })
+   };
 
     //----------------------------//
     //   Styles
@@ -48,12 +61,12 @@ const PlantCard=(plant)=>{
                 <p>Water every {h2o_frequency} days</p>
                 <div className='button-wrapper'>
                     <button onClick={ () => setIsOpen( true )}>Edit Plant</button>
-                    <PlantEditForm open={ isOpen } onClose={ () => setIsOpen( false )}>
+                    <PlantEditForm open={ isOpen } onClose={ () => setIsOpen( false )} plant={plant.plant} update={setUpdate}>
                         plant edit form
                     </PlantEditForm>
                 </div>
                 
-                <button>Delete Plant</button>
+                <button onClick={ (event) => deletePlant(event)}>Delete Plant</button>
             </div>
         </StyledDiv>
     )
