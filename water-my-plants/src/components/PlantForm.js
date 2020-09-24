@@ -1,5 +1,4 @@
 import React, { useState, useEffect }from 'react'
-// import shortid from 'shortid'
 import * as yup from 'yup'
 import schema from './plantSchema'
 
@@ -25,7 +24,6 @@ const initialFormErrors={
     image_url:"",
     h2o_frequency:""
 }
-// const initialPlantList=[]
 
 //disabled
 const initialDisabled=true
@@ -33,8 +31,7 @@ const initialDisabled=true
 //---------------------------------------------
 //   Plant Form Component
 //---------------------------------------------
-const PlantForm=(props)=>{
-    const {addPlant, id} = props
+const PlantForm = ({ addPlant, id }) => {
 
     //----------------------------//
     //   States
@@ -60,7 +57,6 @@ const PlantForm=(props)=>{
     //submit
     const submit = () => {
         const newPlant={
-            // id:shortid.generate(),
             user_id: id,
             nickname:formValues.nickname.trim(),
             species:formValues.species.trim(),
@@ -89,13 +85,8 @@ const PlantForm=(props)=>{
 
     //postPlants
     const postPlant=(newPlant)=>{
-        console.log("New plant created",newPlant)
-        addPlant(newPlant)
-        
+        addPlant( newPlant )
     }
-
-    //addPlant
-
 
     //----------------------------//
     //   Events & Effects
@@ -126,14 +117,14 @@ const PlantForm=(props)=>{
         <div>
             <h2>New Plant</h2>
             <form id="plantForm" onSubmit={onSubmit}>
-                <label>
-                    Name:
-                    <input 
-                        type="text" 
-                        name="nickname" 
-                        onChange={onChange}
-                    />
-                </label>
+                    <label>
+                        Name:
+                        <input 
+                            type="text" 
+                            name="nickname" 
+                            onChange={onChange}
+                        />
+                    </label>
                 <label>
                     Species:
                     <input 

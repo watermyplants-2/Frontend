@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-const StyledDiv = styled.div`
+const StyledDiv1 = styled.div`
     .modal-styles {
         position: fixed;
         top: 50%;
@@ -23,8 +23,6 @@ const StyledDiv = styled.div`
         background-color: rgba(141, 170, 106, .7);
         z-index: 1000;
     }
-
-    
 `;
 
 const initialState = {
@@ -63,7 +61,7 @@ const PlantEditForm = ({ open, onClose, plant, update }) => {
 
     console.log(plant)
     return(
-        <StyledDiv >
+        <StyledDiv1 >
             <div className='overlay-styles'/>
             <div className='modal-styles'>
                 <h2>Edit Plant Form</h2>
@@ -108,7 +106,7 @@ const PlantEditForm = ({ open, onClose, plant, update }) => {
                 </form>
                 <button onClick={onClose}>Close</button>
             </div>
-        </StyledDiv>
+        </StyledDiv1>
     )
 };
 

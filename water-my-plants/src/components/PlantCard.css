@@ -1,0 +1,17 @@
+.plantCard{
+    border: 1px solid white;
+}
+
+.image {
+    margin:auto;
+    height:100px;
+    width:100%;
+    background-size:cover;
+    background-repeat:none;
+    background-position:center;
+}
+
+.button-wrapper {
+    position: relative;
+    z-index: 1;
+}

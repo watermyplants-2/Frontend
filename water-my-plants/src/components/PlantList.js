@@ -4,8 +4,7 @@ import PlantCard from './PlantCard'
 //---------------------------------------------
 //   Plant List Component
 //---------------------------------------------
-const PlantList=(props)=>{
-    const { plants }=props
+const PlantList = ({ plants }) => {
 //---------------------------------------------
 //   Return
 //---------------------------------------------
@@ -15,6 +14,7 @@ const PlantList=(props)=>{
             {
                 plants.map(plant=>{
                     return(<PlantCard 
+                        key={plant.id}
                         plant={plant}
                     />)
                 })
