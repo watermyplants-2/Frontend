@@ -4,6 +4,7 @@ import { fetchPlants, appendPlant } from "../store/actions";
 import styled from 'styled-components';
 import PlantList from './PlantList';
 import PlantForm from './PlantForm';
+import Calendar from './Calendar';
 
 
 //----------------------------//
@@ -47,8 +48,8 @@ const StyledDiv = styled.div`
     }
     .calendar {
         grid-area: calendar;
-        height: 200px;
     };
+    
     .wrapper {
         display: grid;
         grid-gap: 1em;
@@ -166,6 +167,7 @@ const Home = ({ username, id, fetchPlants, appendPlant }) => {
 
     //plantList
     const [userPlants, setUserPlants] = useState(initialUserPlants)
+    console.log(userPlants)
     
 
     const [getUsername] = useStickyState(username, "username");
@@ -230,7 +232,9 @@ const Home = ({ username, id, fetchPlants, appendPlant }) => {
                         plants={userPlants}
                     />
                 </div>
-                <div className='calendar box'>Calendar</div>
+                <div className='calendar box'>
+                        <Calendar plants={userPlants}/>
+                </div>
             </div>
         </StyledDiv>
     )
