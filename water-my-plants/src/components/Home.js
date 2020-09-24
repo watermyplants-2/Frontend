@@ -4,7 +4,9 @@ import { connect } from "react-redux";
 import styled from 'styled-components';
 import PlantList from './PlantList'
 import PlantForm from './PlantForm'
+import fakeData from './fakeServerData.json'
 import { axiosWithAuth } from '../utils/axiosWithAuth';
+import Footer from './Footer'
 // import fakeData from './fakeData.json'
 
 
@@ -18,7 +20,7 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 //----------------------------//
 //   Initial Values
 //----------------------------//
-const initialUserPlants=[]
+const initialUserPlants=fakeData
 // const initialServerPlants=[]
 
 //----------------------------//
@@ -28,10 +30,28 @@ const initialUserPlants=[]
 const StyledDiv = styled.div`
     .nav {
         grid-area: nav;
+        background-color:#DAB692;
+        color:#8F5B34;
+        text-align:center;
+
+        button{
+            padding:2rem 5rem 2rem 5rem;
+            margin-left:5rem;
+            background-color:#DAB692;
+            font-weight:500;
+            color:#8F5B34;
+            border-radius:0;
+            border-top:none;
+            border-bottom:none;
+            border-left:1px solid #8F5B34;
+            border-right:1px solid #8F5B34;
+            
+        } 
     };
+    
     .plants {
         grid-area: plants;
-        height: 300px;
+        height: 500px;
         overflow:scroll;
     };
     .sidebar {
@@ -39,42 +59,69 @@ const StyledDiv = styled.div`
     }
     .calendar {
         grid-area: calendar;
-        height: 300px;
+        height: 200px;
     };
     .wrapper {
         display: grid;
         grid-gap: 1em;
+        /* grid-template-columns:minmax(25rem, 100rem) */
         grid-template-areas:
         "nav"
         "sidebar"
         "plants"
         "calendar"
+        "footer"
     };
 
     @media only screen and ( min-width: 800px ) {
         .wrapper {
-            grid-template-columns: 20% auto;
+            grid-template-columns: min-content auto;
             grid-template-areas:
                 "nav nav"
                 "sidebar plants"
                 "sidebar calendar"
+                "footer footer"
         };
     };
 
     .addPlant {
-        height: 250px;
+        height: 400px;
+        padding:3rem;
+        h2{
+            margin-bottom:1.5rem;
+        }
+        input{
+            margin-bottom:1rem;
+        }
+        button{
+            background-color:#8D9B6A;
+            color:white;
+            border:none;
+            cursor:pointer;
+            margin-top:2rem;
+        }
+        label{
+            display:block;
+        }
+
     };
     .profile {
         height: 375px;
     };
     .box {
-        background-color: #444;
-        color: #fff;
+        background-color: #ffffff;
+        color: #8D9B6A;
         border-radius: 5px;
+        border: 1px solid #eeeeee;
         padding: 10px;
         margin: 10px;
         text-align: center;
+        filter: drop-shadow(2px 2px 2px #eeeeee);
+        
     };
+    .footer{
+        grid-area:footer;
+    }
     .errors{
         color:red;  
     };
@@ -143,19 +190,19 @@ const Home = ({ username, id}) => {
     //set current userID
     // const userId=testUserId
 
-    useEffect(()=>{
-        axios.get('https://water-my-plants-four.herokuapp.com/plants')
-            .then(res => {
-                // setServerPlants(res.data)
-                setUserPlants(res.data.filter( plants => {
-                    console.log(plants.user_id, id)
-                    return plants.user_id === getId;
-                }))
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    },[id])
+    // useEffect(()=>{
+    //     axios.get('https://water-my-plants-four.herokuapp.com/plants')
+    //         .then(res => {
+    //             // setServerPlants(res.data)
+    //             setUserPlants(res.data.filter( plants => {
+    //                 console.log(plants.user_id, id)
+    //                 return plants.user_id === getId;
+    //             }))
+    //         })
+    //         .catch(err => {
+    //             console.log(err)
+    //         })
+    // },[id])
 
 
     //filter serverPlants and set to userPlants
@@ -206,9 +253,9 @@ const Home = ({ username, id}) => {
             
             
             <div className='wrapper'>
-                <div className='nav box'>
-                    Nav Bar
-                    <button>log out</button>
+                <div className='nav'>
+                    Water My Plants
+                    <button>Log Out</button>
                 </div>
                 <section className="sidebar">
                     <div className='profile box'>
@@ -232,8 +279,10 @@ const Home = ({ username, id}) => {
                     />
                 </div>
                 <div className='calendar box'>Calendar</div>
-            </div>
+            </div>        
+            <Footer className="footer"/>
         </StyledDiv>
+
     )
 };
 

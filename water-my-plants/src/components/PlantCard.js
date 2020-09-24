@@ -31,14 +31,36 @@ const PlantCard=(plant)=>{
 
     const StyledDiv = styled.div`
     .plantCard{
-        border: 1px solid white;
+        border: 1px solid #eee;
+        display:flex;
+        flex-flow:space-between;
+        margin-top:1rem;
+        button{
+            width:3rem;
+            height:3rem;
+            font-size:2.2rem;
+            border:none;
+            background-color:white;
+            color:#8D9B6A;
+            cursor:pointer;
+        }
+        .text-wrapper{
+            text-align:left;
+            margin: 1.5rem auto 0 1.5rem;
+        }
+        .species{
+            font-style:italic;
+            font-size:1.4rem;
+            margin-bottom:.7rem;
+        }
+        .water{
+            font-weight:700;
+        }
     }
     .image {
-        /* background-color:red; */
         background-image: url(${image_url});
-        margin:auto;
         height:100px;
-        width:100%;
+        width:60%;
         background-size:cover;
         background-repeat:none;
         background-position:center;
@@ -47,6 +69,9 @@ const PlantCard=(plant)=>{
     .button-wrapper {
         position: relative;
         z-index: 1;
+        display:flex;
+        flex-flow:column;
+        margin:1rem;
     }
 `
 // ---------------------------------------------
@@ -56,17 +81,20 @@ const PlantCard=(plant)=>{
         <StyledDiv key={id}> 
             <div className="plantCard">
                 <div className="image"></div>
-                <h3 className="nickname">{nickname}</h3>
-                <p className="species">{species}</p>
-                <p>Water every {h2o_frequency} days</p>
+                <div className="text-wrapper">
+                    <h3 className="nickname">{nickname}</h3>
+                    <p className="species">{species}</p>
+                    <p>Water every <span className="water">{h2o_frequency}</span> days</p>
+                </div>
                 <div className='button-wrapper'>
-                    <button onClick={ () => setIsOpen( true )}>Edit Plant</button>
+                    <button onClick={ () => setIsOpen( true )} className="fa fa-edit"></button>
                     <PlantEditForm open={ isOpen } onClose={ () => setIsOpen( false )} plant={plant.plant} update={setUpdate}>
                         plant edit form
                     </PlantEditForm>
+                    <button onClick={ (event) => deletePlant(event)} className="fa fa-trash"></button>
                 </div>
                 
-                <button onClick={ (event) => deletePlant(event)}>Delete Plant</button>
+                
             </div>
         </StyledDiv>
     )
