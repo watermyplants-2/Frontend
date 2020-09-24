@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+import { connect } from "react-redux";
 import styled from 'styled-components';
 import PlantList from './PlantList'
 import PlantForm from './PlantForm'
-import fakeData from './fakeData.json'
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+// import fakeData from './fakeData.json'
 
 
 //----------------------------//
@@ -17,7 +19,7 @@ import fakeData from './fakeData.json'
 //   Initial Values
 //----------------------------//
 const initialUserPlants=[]
-const initialServerPlants=[]
+// const initialServerPlants=[]
 
 //----------------------------//
 //   Styles
@@ -64,7 +66,6 @@ const StyledDiv = styled.div`
     };
     .profile {
         height: 375px;
-        display:none;
     };
     .box {
         background-color: #444;
@@ -83,17 +84,33 @@ const StyledDiv = styled.div`
 //---------------------------------------------
 //   Home Component
 //---------------------------------------------
-const Home = () => {
+const Home = ({ username, id}) => {
+
+    function useStickyState(defaultValue, key) {
+        const [value, setValue] = React.useState(() => {
+          const stickyValue = window.localStorage.getItem(key);
+          return stickyValue !== null
+            ? JSON.parse(stickyValue)
+            : defaultValue;
+        });
+        React.useEffect(() => {
+          window.localStorage.setItem(key, JSON.stringify(value));
+        }, [key, value]);
+        return [value, setValue];
+      }
 
     //----------------------------//
     //   States
     //----------------------------//
 
     //serverPlants
-    const [serverPlants, setServerPlants] = useState(initialServerPlants)
+    // const [serverPlants, setServerPlants] = useState(initialServerPlants)
 
     //plantList
     const [userPlants, setUserPlants] = useState(initialUserPlants)
+
+    const [getUsername] = useStickyState(username, "username");
+    const [getId] = useStickyState(id, "id");
 
     //----------------------------//
     //   Helpers
@@ -101,9 +118,18 @@ const Home = () => {
 
     //addPlant
     const addPlant=(newPlant)=>{
-        setUserPlants([...userPlants,newPlant])
-        console.log("User's new plant",newPlant)
-        //replace this with GET request when server is ready
+        console.log(newPlant)
+        axiosWithAuth()
+            .post('/plants', newPlant)
+            .then(response => {
+                console.log("add plant ", response)
+            })
+            .catch( error => {
+                console.log('add plant error, ', error)
+            })
+            
+        // console.log("User's new plant",newPlant)
+        //replace this with POST request when server is ready
 
         // nice to have:
         // new plant adds to top of list
@@ -120,20 +146,16 @@ const Home = () => {
     useEffect(()=>{
         axios.get('https://water-my-plants-four.herokuapp.com/plants')
             .then(res => {
-                console.log("GET request sent")
-                console.log(res.data)
-                setServerPlants(res.data)
-                setUserPlants(res.data)
+                // setServerPlants(res.data)
+                setUserPlants(res.data.filter( plants => {
+                    console.log(plants.user_id, id)
+                    return plants.user_id === getId;
+                }))
             })
             .catch(err => {
                 console.log(err)
             })
-    },[])
-
-    // //getPlants using axios
-    // const getPlants=()=>{
-
-    // }
+    },[id])
 
 
     //filter serverPlants and set to userPlants
@@ -169,11 +191,10 @@ const Home = () => {
     //   Events & Effects
     //----------------------------//
 
-    const clickTest=()=>{
-        console.log("Server plants:", serverPlants)
-        console.log("User plants:", userPlants)
-    }
-
+    // const clickTest=()=>{
+    //     console.log("Server plants:", serverPlants)
+    //     console.log("User plants:", userPlants)
+    // }
 
 
 
@@ -190,11 +211,17 @@ const Home = () => {
                     <button>log out</button>
                 </div>
                 <section className="sidebar">
-                    <div className='profile box'>Profile</div> 
+                    <div className='profile box'>
+                        <div>
+                            <h2>Profile</h2>
+                        </div>
+                        <div> Hello {getUsername}!</div> 
+                    </div> 
                     <div className='addPlant box'>
                         {/* Add Plant */}
                         <PlantForm 
                             addPlant={addPlant}
+                            id={getId}
                         />
                     </div>
                 </section>
@@ -210,4 +237,11 @@ const Home = () => {
     )
 };
 
-export default Home;
+const mapStateToProps = state => {
+    return {
+        username: state.username,
+        id: state.id
+    };
+};
+
+export default connect( mapStateToProps, {})(Home);
