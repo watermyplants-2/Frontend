@@ -27,17 +27,21 @@ const PlantCard=({ plant, removePlant })=>{
         <div key={id}> 
             <div className="plantCard">
                 <div style={{backgroundImage: `url(${image_url})`}} className='image'></div>
-                <h3 className="nickname">{nickname}</h3>
-                <p className="species">{species}</p>
-                <p>Water every {h2o_frequency} days</p>
-                <div className='button-wrapper'>
-                    <button onClick={ () => setIsOpen( true )}>Edit Plant</button>
-                    <PlantEditForm open={ isOpen } onClose={ () => setIsOpen( false )} plant={plant} update={setUpdate}>
-                        plant edit form
-                    </PlantEditForm>
+                <div className="text-wrapper">
+                    <h3 className="nickname">{nickname}</h3>
+                    <p className="species">{species}</p>
+                    <p>Water every <span className="water">{h2o_frequency}</span> days</p>
                 </div>
-                
-                <button onClick={ (event) => deletePlant(event)}>Delete Plant</button>
+                <div className='buttons-wrapper'>
+                    <div className='button-wrapper'>
+                        <button className="fa fa-edit" onClick={ () => setIsOpen( true )}></button>
+                        <PlantEditForm open={ isOpen } onClose={ () => setIsOpen( false )} plant={plant} update={setUpdate}>
+                            plant edit form
+                        </PlantEditForm>
+                    </div>
+                    
+                    <button className="fa fa-trash" onClick={ (event) => deletePlant(event)}></button>
+                </div>
             </div>
         </div>
     )
