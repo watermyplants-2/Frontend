@@ -51,11 +51,13 @@ export const fetchPlants = ({ setUserPlants, id, getId }) => {
 }
 
 export const appendPlant = data => {
+    console.log(data)
     return ( dispatch ) => {
         axiosWithAuth()
             .post('/plants', data)
             .then(response => {
-                console.log("add plant ", response)
+                console.log("add plant ", data)
+                // dispatch({ type: ADD_PLANT, payload: response.data.data })
             })
             .catch( error => {
                 console.log('add plant error, ', error)
