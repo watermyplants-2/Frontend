@@ -1,25 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios'
 import { connect } from "react-redux";
+import { fetchPlants, appendPlant } from "../store/actions";
 import styled from 'styled-components';
-import PlantList from './PlantList'
-import PlantForm from './PlantForm'
-import { axiosWithAuth } from '../utils/axiosWithAuth';
-// import fakeData from './fakeData.json'
+import PlantList from './PlantList';
+import PlantForm from './PlantForm';
 
-
-//----------------------------//
-//   Test Values
-//----------------------------//
-// const userData=fakeData
-// const fakePlants=userData.plants
-// const testUserId=39
 
 //----------------------------//
 //   Initial Values
 //----------------------------//
 const initialUserPlants=[]
-// const initialServerPlants=[]
 
 //----------------------------//
 //   Styles
@@ -78,13 +68,30 @@ const StyledDiv = styled.div`
     .errors{
         color:red;  
     };
+    .plantCard{
+         border: 1px solid white;
+     }
+     .image {
+         
+         margin:auto;
+         height:100px;
+         width:100%;
+         background-size:cover;
+         background-repeat:none;
+         background-position:center;
+     }
+
+     .button-wrapper {
+         position: relative;
+         z-index: 1;
+     }
 `;
 
 
 //---------------------------------------------
 //   Home Component
 //---------------------------------------------
-const Home = ({ username, id}) => {
+const Home = ({ username, id, fetchPlants, appendPlant }) => {
 
     function useStickyState(defaultValue, key) {
         const [value, setValue] = React.useState(() => {
@@ -103,11 +110,9 @@ const Home = ({ username, id}) => {
     //   States
     //----------------------------//
 
-    //serverPlants
-    // const [serverPlants, setServerPlants] = useState(initialServerPlants)
-
     //plantList
     const [userPlants, setUserPlants] = useState(initialUserPlants)
+    
 
     const [getUsername] = useStickyState(username, "username");
     const [getId] = useStickyState(id, "id");
@@ -117,85 +122,23 @@ const Home = ({ username, id}) => {
     //----------------------------//
 
     //addPlant
-    const addPlant=(newPlant)=>{
-        console.log(newPlant)
-        axiosWithAuth()
-            .post('/plants', newPlant)
-            .then(response => {
-                console.log("add plant ", response)
-            })
-            .catch( error => {
-                console.log('add plant error, ', error)
-            })
-            
-        // console.log("User's new plant",newPlant)
-        //replace this with POST request when server is ready
+    const addPlant= newPlant => {
+        appendPlant( newPlant ); // adds new plant to server
 
         // nice to have:
         // new plant adds to top of list
-    }
+    };
 
     //----------------------------//
     //   Remote Data
     //----------------------------//
     
 
-    //set current userID
-    // const userId=testUserId
-
-    useEffect(()=>{
-        axios.get('https://water-my-plants-four.herokuapp.com/plants')
-            .then(res => {
-                // setServerPlants(res.data)
-                setUserPlants(res.data.filter( plants => {
-                    console.log(plants.user_id, id)
-                    return plants.user_id === getId;
-                }))
-            })
-            .catch(err => {
-                console.log(err)
-            })
-    },[id])
-
-
-    //filter serverPlants and set to userPlants
-    // const filterPlants=()=>{
-
-
-    //     // //-------------------------
-    //     // const data=serverPlants
-
-    //     // // for matching userID
-    //     // const filtered=data.filter(o=>{
-    //     //     if(o["user_id"]===userId){
-    //     //         return true
-    //     //     }else{
-    //     //         return false
-    //     //     }
-    //     // })
-    //     // console.log(filtered)
-    //     // // for plants with no fields missing or null
-    //     // //-------------------------
-        
-    //     // const data=serverPlants
-    //     // const filtered=data.filter(o=>{
-    //     //        return (o["user_id"])
-    //     //     }
-    //     // )
-    //     // console.log(filtered)
-
-    // }
-
-
-    //----------------------------//
-    //   Events & Effects
-    //----------------------------//
-
-    // const clickTest=()=>{
-    //     console.log("Server plants:", serverPlants)
-    //     console.log("User plants:", userPlants)
-    // }
-
+    const plantObj = { setUserPlants, id, getId } // sort into one object to be passed
+    useEffect( () => {
+        fetchPlants( plantObj ); // calls and fetches plant data to be displayed and sorted by the logged in user
+    }, [ fetchPlants, plantObj ])
+    
 
 
 //---------------------------------------------
@@ -203,8 +146,6 @@ const Home = ({ username, id}) => {
 //---------------------------------------------
     return (
         <StyledDiv>
-            
-            
             <div className='wrapper'>
                 <div className='nav box'>
                     Nav Bar
@@ -244,4 +185,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect( mapStateToProps, {})(Home);
+export default connect( mapStateToProps, { fetchPlants, appendPlant })(Home);

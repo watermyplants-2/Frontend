@@ -35,14 +35,44 @@ export const signup = data => {
     }
 };
 
+export const fetchPlants = ({ setUserPlants, id, getId }) => {
+    return ( dispatch ) => {
+    axiosWithAuth()
+        .get('/plants')
+            .then(res => {
+                setUserPlants(res.data.filter( plants => {
+                    return plants.user_id === getId;
+                }))
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+}
 
-            
-                
-            //     .post("http://localhost:3333/smurfs", data)
-            // .then( () => {
-            //     data.id=!data.id;
-            //     dispatch({type: ADD_SMURF, payload: data}) 
-            // })
-            // .catch( error => {
-            //     console.log( error )
-            // });
+export const appendPlant = data => {
+    return ( dispatch ) => {
+        axiosWithAuth()
+            .post('/plants', data)
+            .then(response => {
+                console.log("add plant ", response)
+            })
+            .catch( error => {
+                console.log('add plant error, ', error)
+            })
+    }
+}
+
+export const removePlant = data => {
+    console.log(data)
+    return ( dispatch ) => {
+        axiosWithAuth()
+            .delete(`/plants/${data}`)
+                .then(response => {
+                    console.log("deleted plant ", response)
+                })
+                .catch( error => {
+                    console.log('deleted plant error, ', error)
+                })
+    }
+}
