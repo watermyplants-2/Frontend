@@ -30,7 +30,7 @@ const PlantCard=({ plant, removePlant })=>{
                 <div className="text-wrapper">
                     <h3 className="nickname">{nickname}</h3>
                     <p className="species">{species}</p>
-                    <p>Water every {h2o_frequency} days</p>
+                    <p>Water every <span className="water">{h2o_frequency}</span> days</p>
                 </div>
                 <div className='buttons-wrapper'>
                     <div className='button-wrapper'>

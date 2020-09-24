@@ -52,7 +52,7 @@ const StyledDiv = styled.div`
     .wrapper {
         display: grid;
         grid-gap: 1em;
-        /* grid-template-columns:minmax(25rem, 100rem) */
+        /* grid-template-columns:minmax(40rem, 100rem) */
         grid-template-areas:
         "nav"
         "sidebar"
@@ -70,7 +70,16 @@ const StyledDiv = styled.div`
                 "sidebar calendar"
                 "footer footer"
         };
+        .profile{
+            background-color:red;
+        }
+
     };
+
+
+    /* @media only screen and (min-width: 1000px) {
+
+    } */
 
     .addPlant {
         height: 400px;
