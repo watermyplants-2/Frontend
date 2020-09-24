@@ -16,12 +16,30 @@ const initialUserPlants=[]
 //----------------------------//
 
 const StyledDiv = styled.div`
-    .nav {
+   .nav {
         grid-area: nav;
+        background-color:#DAB692;
+        color:#8F5B34;
+        text-align:center;
+
+        button{
+            padding:2rem 5rem 2rem 5rem;
+            margin-left:5rem;
+            background-color:#DAB692;
+            font-weight:500;
+            color:#8F5B34;
+            border-radius:0;
+            border-top:none;
+            border-bottom:none;
+            border-left:1px solid #8F5B34;
+            border-right:1px solid #8F5B34;
+            
+        } 
     };
+    
     .plants {
         grid-area: plants;
-        height: 300px;
+        height: 500px;
         overflow:scroll;
     };
     .sidebar {
@@ -29,62 +47,89 @@ const StyledDiv = styled.div`
     }
     .calendar {
         grid-area: calendar;
-        height: 300px;
+        height: 200px;
     };
     .wrapper {
         display: grid;
         grid-gap: 1em;
+        /* grid-template-columns:minmax(25rem, 100rem) */
         grid-template-areas:
         "nav"
         "sidebar"
         "plants"
         "calendar"
+        "footer"
     };
 
     @media only screen and ( min-width: 800px ) {
         .wrapper {
-            grid-template-columns: 20% auto;
+            grid-template-columns: min-content auto;
             grid-template-areas:
                 "nav nav"
                 "sidebar plants"
                 "sidebar calendar"
+                "footer footer"
         };
     };
 
     .addPlant {
-        height: 250px;
+        height: 400px;
+        padding:3rem;
+        h2{
+            margin-bottom:1.5rem;
+        }
+        input{
+            margin-bottom:1rem;
+        }
+        button{
+            background-color:#8D9B6A;
+            color:white;
+            border:none;
+            cursor:pointer;
+            margin-top:2rem;
+        }
+        label{
+            display:block;
+        }
+
     };
     .profile {
         height: 375px;
+        
+        h2{
+            margin-bottom:1rem;
+        }
+
+        .avatar{
+            background-color:#8D9B6A;
+            color:#ffffff;
+            font-size:8rem;
+            height:10rem;
+            width:10rem;
+            text-align:center;
+            margin-top:2rem;
+            padding-top:.6rem;
+            border-radius:200px;
+        }
     };
+
     .box {
-        background-color: #444;
-        color: #fff;
+        background-color: #ffffff;
+        color: #8D9B6A;
         border-radius: 5px;
+        border: 1px solid #eeeeee;
         padding: 10px;
         margin: 10px;
         text-align: center;
+        filter: drop-shadow(2px 2px 2px #eeeeee);
+        
     };
+    .footer{
+        grid-area:footer;
+    }
     .errors{
         color:red;  
     };
-    .plantCard{
-         border: 1px solid white;
-     }
-     .image {
-         
-         margin:auto;
-         height:100px;
-         width:100%;
-         background-size:cover;
-         background-repeat:none;
-         background-position:center;
-     }
-
-     .button-wrapper {
-         position: relative;
-         z-index: 1;
-     }
 `;
 
 
@@ -147,7 +192,7 @@ const Home = ({ username, id, fetchPlants, appendPlant }) => {
     return (
         <StyledDiv>
             <div className='wrapper'>
-                <div className='nav box'>
+                <div className='nav'>
                     Nav Bar
                     <button>log out</button>
                 </div>
@@ -155,8 +200,12 @@ const Home = ({ username, id, fetchPlants, appendPlant }) => {
                     <div className='profile box'>
                         <div>
                             <h2>Profile</h2>
+
                         </div>
                         <div> Hello {getUsername}!</div> 
+                        <div className="profile-pic">
+                                <p className="avatar fa fa-user"></p>
+                        </div>
                     </div> 
                     <div className='addPlant box'>
                         {/* Add Plant */}

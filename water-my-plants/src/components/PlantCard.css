@@ -1,17 +1,49 @@
 .plantCard{
-    border: 1px solid white;
+    border: 1px solid #eee;
+    display:flex;
+    flex-flow:space-between;
+    margin-top:1rem;
+    
+    
 }
 
-.image {
-    margin:auto;
+.plantCard .text-wrapper{
+    text-align:left;
+    margin: 1.5rem auto 0 1.5rem;
+}
+.plantCard .species{
+    font-style:italic;
+    font-size:1.4rem;
+    margin-bottom:.7rem;
+}
+.plantCard .water{
+    font-weight:700;
+}
+.plantCard button{
+    width:3rem;
+    height:3rem;
+    font-size:2.2rem;
+    border:none;
+    background-color:white;
+    color:#8D9B6A;
+    cursor:pointer;
+}
+
+
+
+.plantCard .image {
+    background-image: url(${image_url});
     height:100px;
-    width:100%;
+    width:60%;
     background-size:cover;
     background-repeat:none;
     background-position:center;
 }
 
-.button-wrapper {
+.plantCard .buttons-wrapper {
     position: relative;
     z-index: 1;
+    display:flex;
+    flex-flow:column;
+    margin:1rem;
 }
